@@ -35,10 +35,19 @@ public class MovieController {
 //        return ResponseEntity.status(HttpStatus.OK).body(movieService.movieRepository.findAll());
 
     }
-    @GetMapping("/movies/{maxRuntime}")
-    public ResponseEntity<List<Movie>> getMovieBetween(@PathVariable("maxRuntime") String maxNum){
 
-        return ResponseEntity.status(HttpStatus.OK).body(movieService.getMovieReleaseDateBetween(maxNum));
+    @GetMapping("/movies/{minRuntime}/{maxRuntime}")
+
+    public ResponseEntity<List<Movie>> getMovieBetween(@PathVariable("minRuntime") String minNum, @PathVariable("maxRuntime") String maxNum) {
+        if (Integer.parseInt(minNum) > Integer.parseInt(maxNum)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.getMovieReleaseDateBetween(minNum, maxNum));
+    }
+
+    @GetMapping("movies/{genre}")
+    public ResponseEntity<List<Movie>> getMovieGenres(@PathVariable("genre") String userGenre){
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.getMovieGenres(userGenre));
     }
 
 

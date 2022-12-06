@@ -23,9 +23,13 @@ public class MovieService {
         return movies;
 
     }
-    public List<Movie>getMovieReleaseDateBetween(String maxNum){
+    public List<Movie>getMovieReleaseDateBetween(String minNum,String maxNum){
 
-        return movieRepository.getMovieReleaseDateBetween(maxNum);
+        return movieRepository.getMovieReleaseDateBetween(minNum,maxNum);
+    }
+
+    public List<Movie>getMovieGenres(String whichGenre){
+        return movieRepository.getMovieGenres(whichGenre);
     }
 
 }
