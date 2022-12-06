@@ -20,6 +20,16 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
+    //Create
+    @PostMapping("/movie")
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+
+        movieService.addMovie(movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(movie);
+    }
+
+
+    //GET
 
     @GetMapping("/movie")
     public String sayHello() {
@@ -46,7 +56,7 @@ public class MovieController {
     }
 
     @GetMapping("movies/{genre}")
-    public ResponseEntity<List<Movie>> getMovieGenres(@PathVariable("genre") String userGenre){
+    public ResponseEntity<List<Movie>> getMovieGenres(@PathVariable("genre") String userGenre) {
         return ResponseEntity.status(HttpStatus.OK).body(movieService.getMovieGenres(userGenre));
     }
 

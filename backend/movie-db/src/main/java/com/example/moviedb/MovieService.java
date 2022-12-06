@@ -12,23 +12,30 @@ public class MovieService {
     @Autowired
     MovieRepository movieRepository;
 
+    //POST
+    public void addMovie(Movie movie) {
+        System.out.println("this is movie " + movie.toString());
+
+
+
+        movieRepository.save(movie);
+    }
+
+
     // GET
     public List<Movie> getAllMovies(int limit) {
-//        return movieRepository
-//                .findAll()
-//                .stream()
-//                .limit(limit)
-//                .collect(Collectors.toList());
+
         List<Movie> movies = movieRepository.findAll();
         return movies;
 
     }
-    public List<Movie>getMovieReleaseDateBetween(String minNum,String maxNum){
 
-        return movieRepository.getMovieReleaseDateBetween(minNum,maxNum);
+    public List<Movie> getMovieReleaseDateBetween(String minNum, String maxNum) {
+
+        return movieRepository.getMovieReleaseDateBetween(minNum, maxNum);
     }
 
-    public List<Movie>getMovieGenres(String whichGenre){
+    public List<Movie> getMovieGenres(String whichGenre) {
         return movieRepository.getMovieGenres(whichGenre);
     }
 

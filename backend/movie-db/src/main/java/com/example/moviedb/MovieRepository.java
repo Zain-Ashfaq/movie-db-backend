@@ -12,7 +12,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query(value = "SELECT * FROM movie WHERE runtime BETWEEN  CAST(:minNum AS SIGNED) AND CAST(:maxNum AS SIGNED);", nativeQuery = true)
     List<Movie> getMovieReleaseDateBetween(@Param("minNum") String minNum, @Param("maxNum") String maxNum);
 
-    @Query(value = "SELECT * FROM movie WHERE LOCATE(:userGenre, genres)>0;\n", nativeQuery = true)
+    @Query(value = "SELECT * FROM movie WHERE LOCATE(:userGenre, genres)>0;", nativeQuery = true)
     List<Movie> getMovieGenres(@Param("userGenre") String whichGenre);
 
 

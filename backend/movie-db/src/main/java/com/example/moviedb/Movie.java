@@ -14,12 +14,15 @@ public class Movie {
 
     private String yearReleased;
     private String runtime;
-    //    @Transient
+
     private String genres;
     private String director;
     private String actors;
     private String plot;
     private String posterUrl;
+
+    protected Movie() {
+    }
 
     public Movie(int id, String title, String yearReleased, String runtime, String genres, String director, String actors, String plot, String posterUrl) {
         this.id = id;
@@ -34,9 +37,7 @@ public class Movie {
         this.posterUrl = posterUrl;
     }
 
-    public Movie() {
 
-    }
 
     public long getId() {
         return id;
