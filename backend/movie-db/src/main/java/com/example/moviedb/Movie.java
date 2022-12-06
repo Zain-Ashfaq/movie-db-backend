@@ -1,9 +1,7 @@
 package com.example.moviedb;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.Transient;
 
 import java.util.List;
 
@@ -11,20 +9,23 @@ import java.util.List;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String title;
-    private String year;
+
+    private String yearReleased;
     private String runtime;
-    private List<String> genres;
+    //    @Transient
+    private String genres;
     private String director;
     private String actors;
     private String plot;
     private String posterUrl;
 
-    public Movie(int id, String title, String year, String runtime, List<String> genres, String director, String actors, String plot, String posterUrl) {
+    public Movie(int id, String title, String yearReleased, String runtime, String genres, String director, String actors, String plot, String posterUrl) {
         this.id = id;
         this.title = title;
-        this.year = year;
+
+        this.yearReleased = yearReleased;
         this.runtime = runtime;
         this.genres = genres;
         this.director = director;
@@ -33,11 +34,15 @@ public class Movie {
         this.posterUrl = posterUrl;
     }
 
-    public int getId() {
+    public Movie() {
+
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,11 +55,11 @@ public class Movie {
     }
 
     public String getYear() {
-        return year;
+        return yearReleased;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setYear(String yearReleased) {
+        this.yearReleased = yearReleased;
     }
 
     public String getRuntime() {
@@ -65,11 +70,14 @@ public class Movie {
         this.runtime = runtime;
     }
 
-    public List<String> getGenres() {
+    //    @Transient
+    public String getGenres() {
+
+
         return genres;
     }
 
-    public void setGenres(List<String> genres) {
+    public void setGenres(String genres) {
         this.genres = genres;
     }
 
@@ -96,6 +104,7 @@ public class Movie {
     public void setPlot(String plot) {
         this.plot = plot;
     }
+
 
     public String getPosterUrl() {
         return posterUrl;
