@@ -15,5 +15,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query(value = "SELECT * FROM movie WHERE LOCATE(:userGenre, genres)>0;", nativeQuery = true)
     List<Movie> getMovieGenres(@Param("userGenre") String whichGenre);
 
-
+    //DELETE
+    void deleteMovieById(long id);
 }

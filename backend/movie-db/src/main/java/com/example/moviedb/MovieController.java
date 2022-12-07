@@ -22,7 +22,7 @@ public class MovieController {
 
     //Create
     @PostMapping("/movie")
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+    public ResponseEntity<List<Movie>> createMovie(@RequestBody List<Movie> movie) {
 
         movieService.addMovie(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(movie);
@@ -58,6 +58,21 @@ public class MovieController {
     @GetMapping("movies/{genre}")
     public ResponseEntity<List<Movie>> getMovieGenres(@PathVariable("genre") String userGenre) {
         return ResponseEntity.status(HttpStatus.OK).body(movieService.getMovieGenres(userGenre));
+    }
+
+    // DELETE
+    @DeleteMapping("/movie/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) {
+        movieService.deleteMovieById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    //PUT
+    @PutMapping("/movie/{id}")
+    public ResponseEntity<Movie> updateGreeting(@RequestBody Movie movie, @PathVariable long id) {
+        movie.setId(id);
+        movieService.updateMovie(movie, id);
+        return ResponseEntity.status(HttpStatus.OK).body(movie);
     }
 
 
